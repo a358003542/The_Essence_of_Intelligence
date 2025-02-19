@@ -226,7 +226,30 @@
 任意多的向量相加，最后回到了起始点，起始点表示为向量 $\boldsymbol{u}$ ，任意多的向量相加的总和为未知向量 $\boldsymbol{a}$ ，有 $\boldsymbol{u} + \boldsymbol{a} = \boldsymbol{u}$ . 这个未知向量被称之为 零向量，也就是  $\boldsymbol{u} + \boldsymbol{0} = \boldsymbol{u}$ ，任何向量和零向量相加等于自身，后面会看到任何向量的线性组合必然包含零向量，任何向量空间也要求存在一个零向量（零元素）。
 
 \section{向量的线性组合}
-\cite{线性代数引论} 问题集1.1第6题，作者潜藏的一个心理表征推断：如果向量的线性组合，可以从中发现某些普遍规律，也就是找到某种关系，使得这个关系不依赖参数c、d...等，那么这个普遍规律对于该线性组合下的所有点都是成立了。
+\cite{线性代数引论}问题集1.1第6题，作者潜藏的一个心理表征推断：如果向量的线性组合，可以从中发现某些普遍规律，也就是找到某种关系，使得这个关系不依赖参数c、d...等，那么这个普遍规律对于该线性组合下的所有点都是成立了。
+
+
+\cite{线性代数引论}问题集1.1第15题的 $\frac{3}{4}\boldsymbol{v} + \frac{1}{4}\boldsymbol{w}$ 为什么一定在对角线上，证明如下：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth ,totalheight=0.95\textheight , keepaspectratio]{线性代数引论问题集1_1_15.png}
+\caption{线性代数引论问题集1.1.15}
+\end{figure}
+
+已知该对角线为 $\boldsymbol{w} - \boldsymbol{v}$，标记该向量为 $P_0$，现在假定$\frac{3}{4}\boldsymbol{v} + \frac{1}{4}\boldsymbol{w}$ 射出去之后并没有落在对角线上，从而根据$\frac{1}{2}\boldsymbol{v} + \frac{1}{2}\boldsymbol{w}$ 和$\frac{3}{4}\boldsymbol{v} + \frac{1}{4}\boldsymbol{w}$ 的终点确立向量 $P_1$。
+
+\begin{align*}
+P_1 &= \frac{v}{2} + \frac{w}{2} - (\frac{3v}{4} + \frac{w}{4}) \\
+    &= -\frac{1}{4}v + \frac{w}{4} \\
+    &= \frac{1}{4}(w-v) \\    
+ => P_1 // P_0
+\end{align*}
+
+因为 $\frac{1}{2}\boldsymbol{v} + \frac{1}{2}\boldsymbol{w}$ 在那条对角线的上，所以 $\frac{3}{4}\boldsymbol{v} + \frac{1}{4}\boldsymbol{w}$ 一定在这条对角线上。上面的证明过程还证明了 $P_1$ 的长度是1/4对角线长度，其终点位置刚好是对角线下面1/4的位置。
+
+
+
 
 
 \backmatter
