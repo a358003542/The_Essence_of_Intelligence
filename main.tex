@@ -212,28 +212,81 @@
 
 \appendix
 
+\part{附录：哲学基础}
+有关学习的一般性讨论，每一次修改都会深刻影响其余内容。
 
-\part{附录：编程知识}
-编程知识介绍以markdown或者ipynb notebook的形式散落各处，而且只关注介绍28法则中那些最常用最核心的知识点，集中学习一段时间即可，后续应用中若用疑问可搜索可问AI或者查看官方文档等。
+\chapter{物的同一性}
+这里所说的物是一般意义上的物，即智能体当前的研究对象，可以是当前和智能体有交互的外在环境，但也可能只是其中的某一部分。不要从视觉上看到的物来理解这里所说的物，这里所说的物甚至不要求具有视觉上的那种独立分离性。
 
-
-\chapter{python语言核心教程}
-\href{https://a358003542.github.io/articles/python-core-tutorial.html}{python语言核心教程}
-
-
-
-\chapter{numpy基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/numpy_basic.ipynb}{numpy basic}
+所谓物的同一性是指智能体能够发现物的存在状态是相同的或不同的，并继而决定采取某种行为的能力。这种能力给予了智能体极大的生存优势，极端的筛选条件下，那些不具有某种物的同一性感知能力的智能体，将会直接被筛出掉。
 
 
-\chapter{pandas基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/pandas_basic.ipynb}{pandas basic}
+\section{物的同一性的要求}
+我有时会说智能体具有对物的同一性的感知能力，但这个感知并不是某种实在的知觉上的那种感知能力，而是一种更加抽象层面的东西，但最终的结果就是智能体确实是某种程度上，先验地无理由地感知到了物的同一性。
 
-\chapter{matplotlib基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/matplotlib_basic.ipynb}{matplotlib basic}
+并继而基于这种对于物的同一性感知，它首先重塑了智能体的监督组织，再继而由智能体的监督组织重塑着智能体的各个部分。
 
-\chapter{pytorch基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/neural_network/pytorch_basic.ipynb}{pytorch basic}
+物的同一性的要求具有极高优先级和权威性，是一种整体性思维，物的同一性总是正确的。后面我会说整体性要求或者一般而言等等类似的字句，都是在说这里讨论的物的同一性要求。
+
+
+\section{物的同一性的推理}
+智能体对于物的同一性感知的发展，要求它各个部分发展出对于物的真实感知部件，从而提高感知准确度。各个部分的感知分析行为，通过某种变换、运算等等，最终得到物的同一性的结论，这个过程称之为物的同一性的推理。
+
+物的同一性的推理是一种从部分式的分析思维，是第二性的，如果物的同一性的推理和物的同一性的要求发生冲突，则物的同一性的推理将会被否定。
+
+多个部分的感知分析可以汇总在一起，并综合得出物的同一性判断。这个汇总出来的概念接近于后面数学中要讨论的向量的概念，但还有些许区别。
+
+
+\section{物的集合}
+将多个物体根据某种相似性汇总为一个大类，这个大类构成更大的整体，而其中单个物则成了部分。上面讨论同样是适用的，只是要注意整体和部分对象的正确选定。
+
+这里讨论的物的集合的概念和后面数学中要讨论的集合的概念是等价的了。
+
+
+\subsection{罗素的理发师悖论的批判}
+\begin{quote}
+在一个村子里，有一位理发师，他宣称自己给所有不给自己刮胡子的人刮胡子，并且只给这些人刮胡子。那么问题来了，这位理发师要不要给自己刮胡子呢？
+
+如果理发师给自己刮胡子，按照他的原则，他只给不给自己刮胡子的人刮胡子，那么他就不应该给自己刮胡子，这就产生了矛盾。
+
+如果理发师不给自己刮胡子，按照他的原则，他要给所有不给自己刮胡子的人刮胡子，那么他就应该给自己刮胡子，这又产生了矛盾。
+\end{quote}
+
+这个悖论犯的错误是试图从部分的推理来否定该集合整体性要求，所有不给自己刮胡子的人构成的集合，这个理发师可以在这个集合，那么他就应当服从这个整体性要求；他也可以不在这个集合；他也可以一会儿在一会儿不在，这都不是问题。
+
+
+
+\section{等价变换}
+智能体在进行物的同一性推理过程中，可以进行任意的变换、运算等等操作，如果某个操作不会改变物的同一性结论，那么这个变换称之为等价变换。
+
+以 $A=B$ 来举例，一系列的等价变换将会构成如下序列：
+
+\begin{align*}
+A => a_1 => a_2 => a_3 => a_4 ... => a_n => B \\
+B => a_1 => a_2 => a_3 => a_4 ... => a_n => A
+\end{align*}
+
+从而有：
+
+\[
+A <=> a_1 <=> a_2 <=> a_3 <=> a_4 ... <=> a_n <=> B 
+\]
+
+这样一系列的等价变换过程当然有助于智能体监督组织更好地取判断物的同一性。
+
+这样一系列的等价变换过程可能是有限数目的，如此则称之为该等价变换族是有穷的；也可能是无穷数目的。但智能体监督组织不在乎该等价变换族是否是可以穷尽的，实际上智能体监督组织也不需要列举其中的全部，甚至智能体监督组织可以不需要主动去进行其中的某些运算【部分独立运算上报】，它需要做的就是容忍这种差异性。
+
+
+\subsection{非等价变换}
+不是等价变换的就是非等价变换，但不要死板地认为某类变换一定就是非等价变换。是否符合物的同一性要求是关键，确切来说，是否符合当前物的同一性判断需求，需求，是一个很灵活的词语。但非常遗憾，形而上学家们，智能体知识体系的最高标准就是这样一个灵活的需求。
+
+有一种反驳观点，机械主义也好，形而上学家也好，会反驳到，智能体的最终物的同一性判断需求是要逼近宇宙的真相，而宇宙的真相并不是一个灵活的标准，关于这个反驳观点请继续看下面的讨论。
+
+\section{学习的理想和谐态}
+现在假定，智能体满足了对于物的同一性的所有需求，从而让自己在和外部世界的交互中达到了某种和谐的状态，称这样的状态是智能体达到了学习的理想和谐态。这种状态不一定是静态的，从时间的某个局部角度出发，会看到一些周期性的均衡变化，但拉长时间来看，可以近似看作无变化的了。
+
+对于这样的观点，我是无法反驳的，我只能说考虑到世界的复杂性，小小的人类智能体是不可能穷尽彻底模拟宇宙一切可能性的，生也有涯，知无涯也。但我为什么要在这里花费一段文字来描述这样一种不可能达到的状态呢？因为这里描述的学习的理想和谐态，标记了一个方向，是有用的。
+
 
 
 
@@ -446,12 +499,34 @@ A当且仅当B：如果A成立则B成立 ，并且如果A不成立则B不成立�
 行向量则写为 $[x_1, x_2...]$
 
 
+\part{附录：编程知识}
+编程知识介绍以markdown或者ipynb notebook的形式散落各处，而且只关注介绍28法则中那些最常用最核心的知识点，集中学习一段时间即可，后续应用中若用疑问可搜索可问AI或者查看官方文档等。
+
+
+\chapter{python语言核心教程}
+\href{https://a358003542.github.io/articles/python-core-tutorial.html}{python语言核心教程}
+
+
+
+\chapter{numpy基础}
+\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/numpy_basic.ipynb}{numpy basic}
+
+
+\chapter{pandas基础}
+\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/pandas_basic.ipynb}{pandas basic}
+
+\chapter{matplotlib基础}
+\href{https://github.com/a358003542/ipynb_notebook/blob/master/matplotlib_basic.ipynb}{matplotlib basic}
+
+\chapter{pytorch基础}
+\href{https://github.com/a358003542/ipynb_notebook/blob/master/neural_network/pytorch_basic.ipynb}{pytorch basic}
+
 \backmatter
-\chapter*{参考资料}
-\addchtoc{参考资料}
+\part*{附录：参考资料}
 \begin{thebibliography}{99}
 \bibitem[线性代数引论]{线性代数引论} 《Introduction to Linear Algebra 5e》 by Gilbert Strang at 2016 .
 \bibitem[Dive into Deep Learning](Dive into Deep Learning) 《Dive into Deep Learning》 by Aston Zhang \& Zachary C. Lipton \& Mu Li \& Alexander J. Smola at 2023.
+\bibitem[什么是数学](什么是数学) 《什么是数学：对思想和方法的基本研究（第三版）》 by [美] R·柯朗 \& H·罗宾 \&  左平  at 2012.
 
 \end{thebibliography}
 \end{document}
