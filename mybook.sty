@@ -1,21 +1,44 @@
-% !Mode:: "TeX:UTF-8"
+% mybook.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mybook}[2025/04/29 A simple book config package]
+\makeatletter
 
-\documentclass[12pt,oneside]{book}
+% config package options
+\PassOptionsToPackage{unicode,colorlinks=true,linkcolor=blue,citecolor=blue}{hyperref}
+\PassOptionsToPackage{svgnames,table}{xcolor}
 
+\newif\if@minted
+\newif\if@scripts
+\@mintedfalse
+\@scriptsfalse
+% 定义选项minted
+\DeclareOption{minted}{\@mintedtrue}
+% 定义选项scripts
+\DeclareOption{scripts}{\@scriptstrue}
+% 处理未定义的选项
+\DeclareOption*{%
+    \PackageWarning{mybook}{Unknown option `\CurrentOption'}%
+}
+
+% 处理所有选项
+\ProcessOptions\relax
+
+
+% basic config
 \newlength{\textpt}
 \setlength{\textpt}{12pt}
-\newcommand{\flypage}[1]{\begin{titlepage}\begin{center}\vspace*{\stretch{1}}#1\vspace*{\stretch{1}}\end{center}\end{titlepage}}
- 
+    
 %========基本必备的宏包========%
 \RequirePackage{calc,float,moresize}
 %\RequirePackage[onehalfspacing]{setspace}
 \linespread{1.5}
 %1.3 onehalfspacing
 %1.6 doublespacing
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\newcommand{\flypage}[1]{\begin{titlepage}\begin{center}\vspace*{\stretch{1}}{\Huge #1}\vspace*{\stretch{1}}\end{center}\end{titlepage}}
 
 %===========加入目录 某章或某节=====%
-\makeatletter
-
 \newcommand{\addchtoc}[1]{
         \cleardoublepage
         \phantomsection
@@ -26,9 +49,11 @@
         \addcontentsline{toc}{section}{#1}}
 
 %===========全文基本格式==========%
-\setlength{\parskip}{1.6ex plus 0.2ex minus 0.2ex}   %段落間距
+%段落間距
+\setlength{\parskip}{1.6ex plus 0.2ex minus 0.2ex}   
 \setlength{\parindent}{\textpt * \real{2}}
 \RequirePackage{indentfirst} 
+
 
 %=========页面设置=========%
 \RequirePackage[a4paper, %a4paper size 297:210 mm
@@ -45,7 +70,7 @@
   ]{geometry}
 
 %color
-\RequirePackage[table,svgnames]{xcolor}
+\RequirePackage{xcolor}
 
 %================字體================%
 %设置数学字体
@@ -61,7 +86,7 @@
 
 
 %中文環境
-\RequirePackage[]{xeCJK}
+\RequirePackage{xeCJK}
 \xeCJKsetup{PunctStyle=plain}
 \setCJKmainfont[FallBack=DejaVu Serif, ItalicFont=KaiTi]{Source Han Serif CN}
 \setCJKsansfont[FallBack=DejaVu Sans]{Source Han Sans CN}
@@ -72,7 +97,7 @@
 \renewcommand\contentsname{目~录}
 \renewcommand\listfigurename{插图目录}
 \renewcommand\listtablename{表格目录}
-\renewcommand\bibname{参~考~文~献}
+\renewcommand\bibname{参~考~资~料}
 \renewcommand\indexname{索~引}
 \renewcommand\figurename{图}
 \renewcommand\tablename{表}
@@ -114,14 +139,13 @@
 %================目录===============%
 %toc label to contents space   dynamic adjust
 \RequirePackage{tocloft}%
-\renewcommand{\numberline}[1]{%
-  \@cftbsnum #1\@cftasnum~\@cftasnumb%
-}
+\renewcommand{\numberline}[1]{\@cftbsnum #1\@cftasnum~\@cftasnumb}
 
 %==============超鏈接===============%
-\RequirePackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref} %設置書簽和目錄鏈接等
-\newcommand{\hlabel}[1]{\phantomsection \label{#1}}%某一小段的引用
-
+%設置書簽和目錄鏈接等
+\RequirePackage{hyperref} 
+%某一小段的引用
+\newcommand{\hlabel}[1]{\phantomsection \label{#1}}
 
 %=================文字強調=========%
 \RequirePackage{xeCJKfntef}
@@ -135,19 +159,18 @@
 \graphicspath{{figures/}}
 %change the caption style a little like 1-1
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\floatplacement{figure}{H}
 
 
 %==============插入表格========%
 \RequirePackage{booktabs}
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
-\RequirePackage{caption}
+%\renewcommand{\arraystretch}{1.3}
+%如果用setspace宏包而不是linespread调整行间距，那么才需要额外的表格行距拉大。
 
-%插入代码
-\RequirePackage{fancyvrb} 
-\fvset{frame=lines,tabsize=4 ,baselinestretch=1.8, fontsize=\footnotesize}
-%minted
-\RequirePackage{minted}%
 
+% 简单的框线环境
+\RequirePackage{framed}
 
 % 框线表示文章引用
 \RequirePackage{mdframed} 
@@ -173,79 +196,42 @@
 \makebox[20pt][c]{\fontsize{10pt}{12pt}\@thefnmark}
 \fontsize{10pt}{12pt}\selectfont #1}
 
-\setlength{\skip\footins}{20pt plus 10pt}
 %main body 与脚注之间的距离
+\setlength{\skip\footins}{20pt plus 10pt}
+
+%插入代码
+\RequirePackage{fancyvrb} 
+\fvset{frame=lines,tabsize=4 ,baselinestretch=1.8, fontsize=\footnotesize}    
+
+
+\if@minted
+%minted
+\RequirePackage{minted}
+\setminted{frame=lines, tabsize=4, framesep=10pt, fontsize=\footnotesize}
+\fi
+
+\if@scripts
+\NewDocumentCommand{\showCode}{m O{python}}{
+\def\source{\detokenize{scripts/#1}}
+
+  \IfFileExists{\source}
+  {\inputminted[label=\source]{#2}{\source}}
+  {file: \source ~not exists.}
+}
+
+\NewDocumentCommand{\showCodeOut}{m}{
+\def\outfile{\detokenize{scripts/#1}}
+  \IfFileExists{\outfile}
+  {\VerbatimInput{\outfile}}
+  {file: \outfile  ~not exits.}
+}
+
+\NewDocumentCommand{\showCodeAndOut}{m O{python}}{
+\showCode{#1}[#2]
+\showCodeOut{#1.out}
+}
+\fi
+
 
 \makeatother
-
-
-
-\title{人工智能学习书}
-\author{Wander}
-
-  
-\begin{document}
-\maketitle
-\flypage{感谢上帝}
-
-
-\frontmatter 
-\addchtoc{序言}
-\chapter*{序言}
-人工智能研究的目的，就是通过人工智能系统的构建，更深刻地认识人类自身智能的本质。
-
-
-\addchtoc{目录}
-\setcounter{tocdepth}{2}    
-\tableofcontents
-
-
-
-\mainmatter
-
-
-
-\part{前言}
-
-\chapter{图灵的计算机器与智能}
-
-
-
-
-
-\appendix
-
-\part{附录：数学知识}
-请参看项目 \href{https://github.com/a358003542/math_playground}{math playground} 。
-
-\part{附录：编程知识}
-编程知识介绍以markdown或者ipynb notebook的形式散落各处，而且只关注介绍28法则中那些最常用最核心的知识点，集中学习一段时间即可，后续应用中若用疑问可搜索可问AI或者查看官方文档等。
-
-
-\chapter{python语言核心教程}
-\href{https://a358003542.github.io/articles/python-core-tutorial.html}{python语言核心教程}
-
-
-
-\chapter{numpy基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/numpy_basic.ipynb}{numpy basic}
-
-
-\chapter{pandas基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/linear_algebra/pandas_basic.ipynb}{pandas basic}
-
-\chapter{matplotlib基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/matplotlib_basic.ipynb}{matplotlib basic}
-
-\chapter{pytorch基础}
-\href{https://github.com/a358003542/ipynb_notebook/blob/master/neural_network/pytorch_basic.ipynb}{pytorch basic}
-
-\backmatter
-\part*{附录：参考资料}
-\begin{thebibliography}{99}
-\bibitem[Dive into Deep Learning]{Dive into Deep Learning} 《Dive into Deep Learning》 by Aston Zhang \& Zachary C. Lipton \& Mu Li \& Alexander J. Smola at 2023.
-\bibitem[人工智能：现代方法]{人工智能：现代方法} 《人工智能：现代方法（第4版）》by [美]斯图尔特·罗素 \& [美]彼得·诺维格 at 2023.
-\end{thebibliography}
-\end{document}
-
-
+\endinput
